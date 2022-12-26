@@ -19,12 +19,15 @@ async function updateCell(authClient, sheetId, cell, value) {
 // Remove secured playoff spots from api's name key. 
 function sanitize(name)
 {
+  // find index of playoff spot
   let index = name.indexOf(" x");
 
+  // if exist, remove it
   if (index !== -1) {
     name = name.substring(0, index);
   }
   
+  // return shortened name
   return name;
 }
 
@@ -41,9 +44,10 @@ module.exports =
     // Set the sheet ID and range
     const sheetId = '1yENks4miU3Ya4RpLX38x2E4BTW6bWGis6s7zbLy-nZ0';
 
+    // Loop through the team sheet and fill in all data
     data.forEach((element, i) => {
-      updateCell(authClient, sheetId, `Teams!A${1 + i}:B${1 + i}`, sanitize(element.name));
-      updateCell(authClient, sheetId, `Teams!C${1 + i}:D${1 + i}`, element.wins);
+      updateCell(authClient, sheetId, `Teams!A${2 + i}:B${2 + i}`, sanitize(element.name));
+      updateCell(authClient, sheetId, `Teams!C${2 + i}:D${2 + i}`, element.wins);
     });
   }
 }

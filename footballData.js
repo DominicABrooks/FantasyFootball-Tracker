@@ -12,6 +12,7 @@ const options = {
 
 module.exports = {
   getData: () => {
+    // return promise from url
     return axios.request(options);
   }
 }
