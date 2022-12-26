@@ -42,8 +42,8 @@ module.exports =
     const sheetId = '1yENks4miU3Ya4RpLX38x2E4BTW6bWGis6s7zbLy-nZ0';
 
     data.forEach((element, i) => {
-      updateCell(authClient, sheetId, `Sheet1!A${43 + i}:B${43 + i}`, sanitize(element.name));
-      updateCell(authClient, sheetId, `Sheet1!C${43 + i}:D${43 + i}`, element.wins);
+      updateCell(authClient, sheetId, `Sheet1!A${66 + i}:B${66 + i}`, sanitize(element.name));
+      updateCell(authClient, sheetId, `Sheet1!C${66 + i}:D${66 + i}`, element.wins);
     });
   }
 }
