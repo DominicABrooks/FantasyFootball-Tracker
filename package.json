@@ -1,0 +1,25 @@
+{
+  "name": "fantasyfootball-tracker",
+  "version": "1.0.0",
+  "description": "Updates google-sheet with updated info on current standings and info on how player's teams are doing",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DominicABrooks/FantasyFootball-Tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DominicABrooks/FantasyFootball-Tracker/issues"
+  },
+  "homepage": "https://github.com/DominicABrooks/FantasyFootball-Tracker#readme",
+  "dependencies": {
+    "axios": "^1.2.1",
+    "dotenv": "^16.0.3",
+    "googleapis": "^110.0.0"
+  }
+}
