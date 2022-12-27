@@ -76,8 +76,7 @@ module.exports =
       //updateCell(authClient, sheetId, `Teams!C${2 + i}:D${2 + i}`, element.wins);
     });
 
-    let now = new Date();
-    now.toLocaleString();
-    updateCell(authClient, sheetId, `Standings!G2:H2`, now);
+    let now = new Date(Date.now());
+    updateCell(authClient, sheetId, `Standings!G2:H2`, now.toLocaleString());
   }
 }
