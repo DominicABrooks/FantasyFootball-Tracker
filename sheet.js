@@ -16,6 +16,31 @@ async function updateCell(authClient, sheetId, cell, value) {
   const response = await sheets.spreadsheets.values.update(updateRequest);
 }
 
+// Update selected cells with value
+async function updateTeamDataRow(authClient, sheetId, team_cell, name, win_cell, wins) {
+  const updateRequest = {
+    auth: authClient,
+    spreadsheetId: sheetId,
+    resource: {
+      valueInputOption: 'RAW',
+      data:
+      [      
+        {
+          range: team_cell, // Update single cell
+          values: [[name]]
+        }, 
+        {
+          range: win_cell, // Update a column
+          values: [[wins]]
+        }
+      ]
+    }
+  };
+
+  const response = await sheets.spreadsheets.values.batchUpdate(updateRequest);
+  console.log(response);
+}
+
 // Remove secured playoff spots from api's name key. 
 function sanitize(name)
 {
@@ -46,8 +71,13 @@ module.exports =
 
     // Loop through the team sheet and fill in all data
     data.forEach((element, i) => {
-      updateCell(authClient, sheetId, `Teams!A${2 + i}:B${2 + i}`, sanitize(element.name));
-      updateCell(authClient, sheetId, `Teams!C${2 + i}:D${2 + i}`, element.wins);
+      updateTeamDataRow(authClient, sheetId,`Teams!A${2 + i}:B${2 + i}`, sanitize(element.name), `Teams!C${2 + i}:D${2 + i}`, element.wins);
+      //updateCell(authClient, sheetId, `Teams!A${2 + i}:B${2 + i}`, sanitize(element.name));
+      //updateCell(authClient, sheetId, `Teams!C${2 + i}:D${2 + i}`, element.wins);
     });
+
+    let now = new Date();
+    now.toLocaleString();
+    updateCell(authClient, sheetId, `Standings!G2:H2`, now);
   }
 }
