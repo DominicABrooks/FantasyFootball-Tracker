@@ -1,5 +1,6 @@
 const football = require("./footballData.js");
 const sheet = require("./sheet.js");
+const cron = require('node-cron');
 
 async function main() 
 {
@@ -14,6 +15,8 @@ async function main()
     });
 };
 
-// run main
-main();
+// run main every-day at 8pm
+cron.schedule('0 20 * * *', () => {
+    main();
+});
 
