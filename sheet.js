@@ -16,7 +16,7 @@ async function updateCell(authClient, sheetId, cell, value) {
   const response = await sheets.spreadsheets.values.update(updateRequest);
 }
 
-// Update selected cells with value
+// Update a teams row in the teams sheet with updated values
 async function updateTeamDataRow(authClient, sheetId, team_cell, name, win_cell, wins) {
   const updateRequest = {
     auth: authClient,
@@ -26,18 +26,20 @@ async function updateTeamDataRow(authClient, sheetId, team_cell, name, win_cell,
       data:
       [      
         {
-          range: team_cell, // Update single cell
+          range: team_cell, // team name cell
           values: [[name]]
         }, 
         {
-          range: win_cell, // Update a column
+          range: win_cell, // wins that team has
           values: [[wins]]
         }
       ]
     }
   };
 
+  // batch update team and wins
   const response = await sheets.spreadsheets.values.batchUpdate(updateRequest);
+  // log response
   console.log(response);
 }
 
