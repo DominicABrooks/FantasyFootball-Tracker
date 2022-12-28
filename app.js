@@ -15,8 +15,8 @@ async function main()
     });
 };
 
-// run main every-day at 8pm
-cron.schedule('0 20 * * *', () => {
+// run main every-day at 12am
+cron.schedule('0 0 * * *', () => {
     main();
 });
 
