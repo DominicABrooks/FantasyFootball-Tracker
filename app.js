@@ -15,6 +15,15 @@ async function main()
     });
 };
 
+// get start args
+const args = process.argv.slice(2);
+
+// if first arg is 'now', then call main before starting crono-schedule
+if(args[0] == 'now')
+{
+    main();
+}
+
 // run main every-day at 12am
 cron.schedule('0 0 * * *', () => {
     main();
