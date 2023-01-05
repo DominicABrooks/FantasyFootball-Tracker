@@ -24,8 +24,14 @@ if(args[0] == 'now')
     main();
 }
 
+// if first arg is 'once', then call main and exit program. Only update once
+if(args[0] == 'once')
+{
+    main();
+    process.exit();
+}
+
 // run main every-day at 12am
 cron.schedule('0 0 * * *', () => {
     main();
 });
-
